@@ -1,12 +1,19 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Jua', sans-serif;
+    padding-top: 200px;
+    padding-bottom: 50px;
 }
 
 header {
     background-color: black;
     padding: 10px 0;
     height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
 }
 
 header a {
@@ -34,6 +41,11 @@ footer {
     background-color: black;
     height: 50px;
     margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
 }
 
 footer>div {
@@ -48,6 +60,12 @@ nav {
     flex-wrap: wrap;
     justify-content: space-around;
     border-bottom: 1px solid #ccc;
+    position: fixed;
+    top: 120px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: white;
 }
 
 nav a {
@@ -60,20 +78,103 @@ nav a {
     box-sizing: border-box;
     line-height: 40px;
     border: 1px solid black;
+    border-radius: 10px;
 }
 
 main {
     padding: 15px;
+    margin-top: 20px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 50;
 }
 
 .content {
     border: 1px solid #ccc;
-    min-height: 300px;
+    min-height: 150px;
+    border-radius: 10px;
+    border: 3px solid grey;
+    margin: 10px 0;
+    padding: 5px 15px;
     /* Adjust as needed */
+}
+
+.content-title {
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+.content-user {
+    font-size: 15px;
+    font-style: italic;
+    color: rgb(89, 92, 92);
+    float: right;
+    margin-top: 10px
+}
+
+.content-part {
+    color: rgb(78, 5, 5);
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 nav>div {
     margin: 15px 20px;
+}
+
+.menu-button {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 102;
+    background-color: black;
+    color: white;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.user-id {
+    color: white;
+    padding: 10px 15px;
+    font-size: 20px;
+    border-bottom: 1px solid #818181;
+}
+
+.search-box {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 15px;
+    font-size: 17px;
+    border: none;
+    border-radius: 5px;
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
 }
 
 @media (min-width: 768px) {

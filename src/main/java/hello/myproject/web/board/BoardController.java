@@ -29,22 +29,22 @@ public class BoardController {
         return "save-ok";
     }
 
-    @GetMapping("/{title}")
+    @GetMapping("/search/{title}")
     public String search(@PathVariable String title, Model model){
         List<Board> searchBoards = boardService.searchBoard(title);
         model.addAttribute("searchBoards", searchBoards);
         return "redirect:/{title}";
     }
 
-    @GetMapping("/{part}")
+    @GetMapping("/menu/{part}")
     public String menu(@PathVariable String part, Model model){
         List<Board> partBoard = boardService.findPartBoard(part);
         model.addAttribute("partBoard", partBoard);
         return "redirect:/{part}";
     }
 
-    @GetMapping("/{loginId}")
-    public String userBoard(@PathVariable String loginId, Model model){
+    @GetMapping("/myPage/{loginId}")
+    public String myPage(@PathVariable String loginId, Model model){
         List<Board> allUserBoard = boardService.findAllUserBoard(loginId);
         model.addAttribute("allUserBoard", allUserBoard);
         return "redirect:/{loginId}";
