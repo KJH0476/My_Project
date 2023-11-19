@@ -30,7 +30,7 @@ public class UserRepository {
     public Optional<User> findLoginId(String loginId){
         List<User> users = findAll();
         for (User u : users) {
-            if(loginId == u.getLoginId()) return Optional.of(u);
+            if(loginId.equals(u.getLoginId())) return Optional.of(u);
         }
         return Optional.empty();
     }

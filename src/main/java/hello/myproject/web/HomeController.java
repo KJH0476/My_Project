@@ -15,21 +15,20 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final UserRepository userRepository;
-
-
-
     @GetMapping("/")
     public String mainPage(@SessionAttribute(name = "loginUser", required = false) User loginUser, Model model){
 
+        boolean isLoggedIn = true;
+
         if(loginUser == null){
-            model.addAttribute("isLoggedIn", false);
+            isLoggedIn = false;
+            model.addAttribute("isLoggedIn", isLoggedIn);
             log.info("nologin");
             return "index";
         }
         //세션이 유지되면 로그인으로 이동
         model.addAttribute("loginUser", loginUser);
-        model.addAttribute("isLoggedIn", true);
+        model.addAttribute("isLoggedIn", isLoggedIn);
         log.info("login ok");
         return "index";
     }

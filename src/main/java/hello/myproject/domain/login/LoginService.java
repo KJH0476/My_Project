@@ -32,6 +32,7 @@ public class LoginService {
         Optional<User> findUser = userRepository.findLoginId(loginId);
         if (findUser.isPresent()) {
             User user = findUser.get();
+            log.info("user={}", user);
             if(user.getPassword().equals(password)) return user;
         }
         return null;
