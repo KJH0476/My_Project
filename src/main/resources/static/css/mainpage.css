@@ -24,16 +24,10 @@ header a {
     font-size: 10px;
 }
 
-header>div:nth-child(1),
-header>div:nth-child(2) {
-    float: right;
-    padding: 0 5px;
-}
-
-header>div:last-child {
+header {
     color: white;
     font-size: 40px;
-    line-height: 85px;
+    line-height: 100px;
     text-align: center;
 }
 
@@ -90,7 +84,6 @@ main {
 }
 
 .content {
-    border: 1px solid #ccc;
     min-height: 150px;
     border-radius: 10px;
     border: 3px solid grey;
@@ -175,6 +168,49 @@ nav>div {
 
 .sidebar a:hover {
     color: #f1f1f1;
+}
+
+.id-box {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.id-textbox {
+    padding: 10px;
+    margin: 10px auto;
+    font-size: 17px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.login-box {
+    min-height: 200px;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 5px 15px;
+}
+
+.login-text {
+    text-align: center;
+    font-size: 25px;
+}
+
+.submit-box {
+    width: 50%;
+    text-align: center;
+    background-color: #999494;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px auto;
+    font-family: 'Jua', sans-serif;
+}
+
+.new-user {
+    text-decoration: none;
+    color: black;
+    text-align: center;
 }
 
 @media (min-width: 768px) {

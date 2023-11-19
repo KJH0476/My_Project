@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1일 1알고리즘</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/mainpage.css">
+    <script src="/javascript/menubar.js"></script>
+</head>
+
+<body>
+<div id="menuButton" class="menu-button">☰ 메뉴</div>
+<div id="sidebar" class="sidebar">
+    <div class="user-id" th:text="${loginId}">사용자ID</div>
+    <input type="text" placeholder="Search Algorithm.." class="search-box" />
+    <a href="#">마이페이지</a>
+    <a href="#">회원정보 수정</a>
+    <a href="#">AI에게 질문</a>
+    <a href="#">로그아웃</a>
+</div>
+
+<header>
+    <div>1일 1알고리즘</div>
+</header>
+
+<nav>
+    <a href="#">해시</a>
+    <a href="#">스택 / 큐</a>
+    <a href="#">힙</a>
+    <a href="#">정렬</a>
+    <a href="#">완전탐색</a>
+    <a href="#">그리디</a>
+    <a href="#">동적계획법</a>
+    <a href="#">DFS/BFS</a>
+    <a href="#">이분탐색</a>
+    <a href="#">그래프</a>
+</nav>
+
+<main style="text-align: center;">
+    <form method="post" action="#" th:action th:object="${loginForm}" class="login-box">
+        <p class="login-text">로그인</p>
+        <div class="id-box">
+            <input type="text" placeholder="ID" class="id-textbox" />
+            <input type="password" placeholder="PASSWORD" class="id-textbox" />
+            <input type="submit" value="로그인" class="submit-box">
+        </div>
+    </form>
+    <a href="#" class="new-user">회원가입</a>
+</main>
+
+<footer>
+    <div>2019136007 고진혁</div>
+</footer>
+</body>
+
+</html>
