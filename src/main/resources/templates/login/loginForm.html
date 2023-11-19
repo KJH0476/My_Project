@@ -9,14 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Jua&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/mainpage.css">
-    <script src="/javascript/menubar.js"></script>
 </head>
 
 <body>
 <div id="menuButton" class="menu-button">☰ 메뉴</div>
 <div id="sidebar" class="sidebar">
-    <div class="user-id" th:text="${loginId}">사용자ID</div>
-    <input type="text" placeholder="Search Algorithm.." class="search-box" />
+    <div class="user-id" >사용자ID</div>
+    <input type="text" name="search" placeholder="Search Algorithm.." class="search-box" />
     <a href="#">마이페이지</a>
     <a href="#">회원정보 수정</a>
     <a href="#">AI에게 질문</a>
@@ -41,11 +40,16 @@
 </nav>
 
 <main style="text-align: center;">
-    <form method="post" action="#" th:action th:object="${loginForm}" class="login-box">
+    <form method="post" name="loginForm" action="index.html" th:action
+          th:object="${loginForm}" class="login-box">
         <p class="login-text">로그인</p>
         <div class="id-box">
-            <input type="text" placeholder="ID" class="id-textbox" />
-            <input type="password" placeholder="PASSWORD" class="id-textbox" />
+            <input type="text" name="id" placeholder="ID"
+                   th:field="*{loginId}" class="id-textbox" th:errorclass="field-error"/>
+            <div class="field-error" th:errors="*{loginId}" />
+            <input type="password" name="password" placeholder="PASSWORD"
+                   th:field="*{password}" class="id-textbox" th:errorclass="field-error" />
+            <div class="field-error" th:errors="*{password}" />
             <input type="submit" value="로그인" class="submit-box">
         </div>
     </form>
@@ -55,6 +59,18 @@
 <footer>
     <div>2019136007 고진혁</div>
 </footer>
+
+<script>
+    document.getElementById('menuButton').onclick = function () {
+        var sidebar = document.getElementById('sidebar');
+        if (sidebar.style.width === '250px') {
+            sidebar.style.width = '0';
+        } else {
+            sidebar.style.width = '250px';
+        }
+    }
+</script>
+
 </body>
 
 </html>

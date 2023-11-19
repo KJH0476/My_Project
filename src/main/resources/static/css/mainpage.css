@@ -222,3 +222,7 @@ nav>div {
         margin: 0 15px;
     }
 }
+
+.field-error{
+    color: red;
+}

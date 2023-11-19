@@ -9,14 +9,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Jua&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/mainpage.css">
-    <script src="/javascript/menubar.js"></script>
 </head>
 
 <body>
 <div id="menuButton" class="menu-button">☰ 메뉴</div>
 <div id="sidebar" class="sidebar">
-    <div class="user-id"><a href="/login">로그인</a></div>
-    <input type="text" placeholder="Search Algorithm.." class="search-box" />
+    <!-- 로그인 되지 않았을 때 -->
+    <div class="user-id" th:if="${!isLoggedIn}">
+        <a href="/login">로그인</a>
+    </div>
+    <!-- 로그인 되었을 때 -->
+    <div class="user-id" th:if="${isLoggedIn}">
+        <span th:text="${loginUser.loginId}">사용자 아이디</span>
+    </div>
+    <input type="text" name="search" placeholder="Search Algorithm.." class="search-box">
     <a href="#">마이페이지</a>
     <a href="#">회원정보 수정</a>
     <a href="#">AI에게 질문</a>
@@ -96,6 +102,18 @@
 <footer>
     <div>2019136007 고진혁</div>
 </footer>
+
+
+<script>
+    document.getElementById('menuButton').onclick = function () {
+        var sidebar = document.getElementById('sidebar');
+        if (sidebar.style.width === '250px') {
+            sidebar.style.width = '0';
+        } else {
+            sidebar.style.width = '250px';
+        }
+    }
+</script>
 
 </body>
 
