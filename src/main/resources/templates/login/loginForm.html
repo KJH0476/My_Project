@@ -14,7 +14,7 @@
 <body>
 <div id="menuButton" class="menu-button">☰ 메뉴</div>
 <div id="sidebar" class="sidebar">
-    <div class="user-id" >사용자ID</div>
+    <a href="/login">로그인</a>
     <input type="text" name="search" placeholder="Search Algorithm.." class="search-box" />
     <a href="#">마이페이지</a>
     <a href="#">회원정보 수정</a>
@@ -44,12 +44,15 @@
           th:object="${loginForm}" class="login-box">
         <p class="login-text">로그인</p>
         <div class="id-box">
+            <div th:if="${#fields.hasGlobalErrors()}" class="global-error">
+                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+            </div>
             <input type="text" name="id" placeholder="ID"
-                   th:field="*{loginId}" class="id-textbox" th:errorclass="field-error"/>
-            <div class="field-error" th:errors="*{loginId}" />
+                   th:field="*{loginId}" class="id-textbox" />
+            <div class="field-error" th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}">비어있음</div>
             <input type="password" name="password" placeholder="PASSWORD"
-                   th:field="*{password}" class="id-textbox" th:errorclass="field-error" />
-            <div class="field-error" th:errors="*{password}" />
+                   th:field="*{password}" class="id-textbox" />
+            <div class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">비어있음</div>
             <input type="submit" value="로그인" class="submit-box">
         </div>
     </form>
