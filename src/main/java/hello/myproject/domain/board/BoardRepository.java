@@ -18,7 +18,7 @@ public class BoardRepository {
 
     //알고리즘 저장
     public void save(Board board){
-        boardStore.put(board.getId(), board);
+        boardStore.put(board.getLoginId(), board);
     }
 
     public Map<String, Board> getBoardStore(){

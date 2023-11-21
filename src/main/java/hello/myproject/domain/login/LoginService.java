@@ -19,11 +19,11 @@ public class LoginService {
     @PostConstruct
     private void init(){
         User user = new User();
-        user.setLoginId("aaa");
-        user.setPassword("!aaa1234");
-        user.setPasswordVerify("!aaa1234");
+        user.setLoginId("aaa1234");
+        user.setPassword("#aaa1234");
+        user.setPasswordVerify("#aaa1234");
         user.setName("userA");
-        user.setBirth("11월");
+        user.setBirth("20000808");
         user.setEmail("lkj0120@naver.com");
 
         User save = userRepository.save(user);
