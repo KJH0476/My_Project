@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1일 1알고리즘</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Jua&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/mainpage.css">
+</head>
+
+<body>
+<div id="menuButton" class="menu-button">☰ 메뉴</div>
+<div id="sidebar" class="sidebar">
+  <div class="user-id" id="userId" th:data-login-id="${loginUser.loginId}">
+    <span th:text="${loginUser.loginId}">사용자 아이디</span>
+  </div>
+  <input type="text" name="search" placeholder="Search Algorithm.." class="search-box" />
+  <a href="#" th:href="@{/board-form}">글쓰기</a>
+  <a href="#">마이페이지</a>
+  <a href="#">회원정보 수정</a>
+  <a href="#">AI에게 질문</a>
+  <a href="#" th:href="@{/logout}">로그아웃</a>
+</div>
+
+<header>
+  <div>1일 1알고리즘</div>
+</header>
+
+<nav>
+  <a href="#">해시</a>
+  <a href="#">스택 / 큐</a>
+  <a href="#">힙</a>
+  <a href="#">정렬</a>
+  <a href="#">완전탐색</a>
+  <a href="#">그리디</a>
+  <a href="#">동적계획법</a>
+  <a href="#">DFS/BFS</a>
+  <a href="#">이분탐색</a>
+  <a href="#">그래프</a>
+</nav>
+
+<main>
+  <div class="blog-post">
+    <input type="text" id="blogTitle" name="title" placeholder="문제 제목 입력.." class="blog-title-input" />
+    <hr>
+    <input type="text" id="blogPart" name="part" placeholder="문제 입력.." class="part-input" />
+    <hr>
+    <div class="editor-menu">
+      <button id="btn-bold">
+        <b>B</b>
+      </button>
+      <button id="btn-italic">
+        <i>I</i>
+      </button>
+      <button id="btn-underline">
+        <u>U</u>
+      </button>
+      <button id="btn-strike">
+        <s>S</s>
+      </button>
+      <button id="btn-ordered-list">
+        OL
+      </button>
+      <button id="btn-unordered-list">
+        UL
+      </button>
+      <button id="btn-image">
+        IMG
+      </button>
+    </div>
+    <div id="editable-content" class="editable-content" contenteditable="true">
+    </div>
+    <button id="sendPostButton" name="sendButton" type="submit">저장</button>
+  </div>
+</main>
+
+<footer>
+  <div>footer</div>
+</footer>
+
+<script>
+    document.getElementById('menuButton').onclick = function () {
+        var sidebar = document.getElementById('sidebar');
+        if (sidebar.style.width === '250px') {
+            sidebar.style.width = '0';
+        } else {
+            sidebar.style.width = '250px';
+        }
+    }
+</script>
+<script>
+    document.querySelector('.editable-content').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            var content = this.textContent;
+            if (content.endsWith('/code')) {
+                e.preventDefault();
+                this.innerHTML = this.innerHTML.replace(/\/code$/, '');
+
+                var codeBlock = document.createElement('pre');
+                codeBlock.className = 'code-block';
+
+                var code = document.createElement('code');
+                code.contentEditable = true; // contentEditable을 <code> 태그에 설정
+                codeBlock.appendChild(code);
+                this.appendChild(codeBlock);
+
+                // 새 줄 추가
+                var newLine = document.createElement('div');
+                newLine.contentEditable = true;
+                newLine.className = 'editable-line';
+                this.appendChild(newLine);
+
+                // 커서를 새 줄로 이동
+                moveCursorToEnd(code);
+            } else if (e.target.tagName === 'CODE' && !e.shiftKey) {
+                // 코드 블록 내에서 엔터 키를 누를 때 줄바꿈 처리
+                e.preventDefault();
+                document.execCommand('insertHTML', false, '\n');
+            }
+        }
+    });
+
+    function moveCursorToEnd(element) {
+        var range = document.createRange();
+        var sel = window.getSelection();
+        range.selectNodeContents(element);
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        element.focus(); // 포커스 추가
+    }
+</script>
+<script>
+    document.querySelector('.editable-content').addEventListener('input', function () {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+</script>
+<script>
+    const editableContent = document.getElementById('editable-content');
+    const btnBold = document.getElementById('btn-bold');
+    const btnItalic = document.getElementById('btn-italic');
+    const btnUnderline = document.getElementById('btn-underline');
+    const btnStrike = document.getElementById('btn-strike');
+    const btnOrderedList = document.getElementById('btn-ordered-list');
+    const btnUnorderedList = document.getElementById('btn-unordered-list');
+
+    btnBold.addEventListener('click', function () {
+        setStyle('bold');
+    });
+
+    btnItalic.addEventListener('click', function () {
+        setStyle('italic');
+    });
+
+    btnUnderline.addEventListener('click', function () {
+        setStyle('underline');
+    });
+
+    btnStrike.addEventListener('click', function () {
+        setStyle('strikeThrough')
+    });
+
+    btnOrderedList.addEventListener('click', function () {
+        setStyle('insertOrderedList');
+    });
+
+    btnUnorderedList.addEventListener('click', function () {
+        setStyle('insertUnorderedList');
+    });
+
+    function setStyle(style) {
+        document.execCommand(style);
+        focusEditor();
+    }
+
+    let lastChar = '';
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === '-') {
+            lastChar = '-';
+        } else if (event.key === ' ' && lastChar === '-') {
+            event.preventDefault();
+            setStyle('insertUnorderedList');
+            lastChar = '';
+        } else {
+            lastChar = '';
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (!isNaN(event.key) && lastInput === '') {
+            lastInput = event.key;
+        } else if (event.key === '.' && !isNaN(lastInput)) {
+            lastInput += '.';
+        } else if (event.key === ' ' && lastInput.endsWith('.')) {
+            event.preventDefault();
+            setStyle('insertOrderedList');
+            lastInput = '';
+        } else {
+            lastInput = '';
+        }
+    });
+
+    function focusEditor() {
+        editableContent.focus({ preventScroll: true });
+    }
+</script>
+<script>
+    function sendPost() {
+      var title = document.getElementById('blogTitle').value;
+      var part = document.getElementById('blogPart').value;
+      var loginId = document.getElementById('userId').getAttribute('data-login-id');
+      var content = document.querySelector('.editable-content').innerHTML;
+      var timestamp = new Date().toISOString();
+
+      var postData = {
+          loginId: loginId,
+          title: title,
+          part: part,
+          content: content,
+          timestamp: timestamp
+      };
+
+      fetch('/board-save', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData)
+    })
+    .then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+    }
+    // 성공적인 저장 후 myPage로 리디렉션
+    window.location.href = '/myPage';
+})
+.catch(error => {
+    console.error('Error:', error);
+    // 오류 처리 로직
+});
+
+}
+</script>
+</script>
+<script>
+    document.getElementById('sendPostButton').addEventListener('click', sendPost);
+</script>
+</script>
+
+</body>
+
+</html>
