@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@Validated @ModelAttribute LoginForm loginForm, BindingResult bindingResult,
-                        HttpServletRequest request, @RequestParam(defaultValue = "/") String redirectUrl){
+                        HttpServletRequest request, @RequestParam(defaultValue = "/") String redirectUrl, Model model){
         if(bindingResult.hasErrors()) return "login/loginForm";
 
         User loginUser = loginService.login(loginForm.getLoginId(), loginForm.getPassword());

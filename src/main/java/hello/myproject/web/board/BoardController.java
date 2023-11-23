@@ -20,45 +20,52 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    //글쓰기 양식
     @GetMapping("/board-form")
-    public String boardForm(@SessionAttribute(name = "loginUser", required = false) User loginUser, Model model){
-        log.info("loginUser={}", loginUser);
-        model.addAttribute("loginUser", loginUser);
+    public String boardForm(){
         return "board/boardForm";
     }
 
+    //게시글 저장
     @PostMapping("/board-save")
     public void saveBoard(@RequestBody Board board, HttpServletResponse response) throws IOException {
-        log.info("board={}", board);
+        log.info("run BoardController Save");
         boardService.saveBoard(board);
         response.getWriter().write("ok");
     }
 
+    //마이페이지
     @GetMapping("/myPage")
     public String goToMyPage(@SessionAttribute(name = "loginUser", required = false) User loginUser, Model model){
+        List<Board> board = boardService.findAllUserBoard(loginUser.getLoginId());
         model.addAttribute("loginUser", loginUser);
+        model.addAttribute("board", board);
+        log.info("loginUser={}", loginUser);
+        for (Board board1 : board) {
+            log.info("board={}", board1);
+        }
         return "page/myPage";
     }
 
-    @GetMapping("/search/{title}")
-    public String search(@PathVariable String title, Model model){
-        List<Board> searchBoards = boardService.searchBoard(title);
-        model.addAttribute("searchBoards", searchBoards);
-        return "redirect:/{title}";
+    //검색
+    @GetMapping("/search")
+    public String search(@RequestParam String title, @SessionAttribute(name = "loginUser", required = false) User loginUser, Model model){
+        List<Board> board = boardService.searchBoard(title);
+        model.addAttribute("board", board);
+        log.info("title={}", title);
+        for (Board board1 : board) {
+            log.info("board={}", board1);
+        }
+        return "redirect:/";
     }
 
+    //메뉴별 검색
     @GetMapping("/menu/{part}")
     public String menu(@PathVariable String part, Model model){
-        List<Board> partBoard = boardService.findPartBoard(part);
-        model.addAttribute("partBoard", partBoard);
-        return "redirect:/{part}";
-    }
-
-    @GetMapping("/myPage/{loginId}")
-    public String myPage(@PathVariable String loginId, Model model){
-        log.info("loginId={}", loginId);
-        List<Board> allUserBoard = boardService.findAllUserBoard(loginId);
-        model.addAttribute("allUserBoard", allUserBoard);
-        return "redirect:/{loginId}";
+        List<Board> board = boardService.findPartBoard(part);
+        model.addAttribute("board", board);
+        log.info("part={}", part);
+        log.info("board={}", board);
+        return "redirect:/";
     }
 }

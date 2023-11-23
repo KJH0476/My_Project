@@ -4,12 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Repository
 public class UserRepository {
 
-    private static Map<Long, User> store = new HashMap<>();
+    private static Map<Long, User> store = new ConcurrentHashMap<>();
     private static long sequence = 0L;
 
     public User save(User user){
