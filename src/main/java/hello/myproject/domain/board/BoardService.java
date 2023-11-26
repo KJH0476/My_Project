@@ -41,6 +41,16 @@ public class BoardService {
         return findUserBoard;
     }
 
+    public Board findByBoardId(String id){
+        Long Lid = Long.parseLong(id);
+
+        Board board = boardRepository.findById(Lid);
+
+        if(board==null) return null;
+
+        return board;
+    }
+
     //메뉴 바에서 파트별로 검색
     public List<Board> findPartBoard(String part){
         List<Board> partBoard = new ArrayList<>();
