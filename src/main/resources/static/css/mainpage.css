@@ -78,6 +78,8 @@ nav a {
 main {
     padding: 15px;
     margin-top: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
     overflow-y: auto;
     position: relative;
     z-index: 50;
@@ -213,13 +215,18 @@ nav>div {
     text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     nav {
         justify-content: space-between;
     }
 
     .content {
         margin: 0 15px;
+    }
+
+    main {
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
