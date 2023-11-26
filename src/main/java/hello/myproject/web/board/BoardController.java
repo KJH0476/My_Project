@@ -68,4 +68,12 @@ public class BoardController {
         log.info("board={}", board);
         return "redirect:/";
     }
+
+    @GetMapping("/board/{id}")
+    public String boardView(@PathVariable String id, Model model){
+        Board board = boardService.findByBoardId(id);
+        log.info("boardView={}", board);
+        model.addAttribute("board", board);
+        return "board/boardView";
+    }
 }

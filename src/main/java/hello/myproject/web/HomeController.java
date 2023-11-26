@@ -1,8 +1,6 @@
 package hello.myproject.web;
 
 import hello.myproject.domain.user.User;
-import hello.myproject.domain.user.UserRepository;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -19,12 +17,12 @@ public class HomeController {
     public String mainPage(@SessionAttribute(name = "loginUser", required = false) User loginUser, Model model){
 
         if(loginUser == null){
-            log.info("nologin");
+            log.info("noLogin");
             return "home/home";
         }
         //세션이 유지되면 로그인으로 이동
         model.addAttribute("loginUser", loginUser);
-        log.info("login ok");
+        log.info("Login ok");
         return "home/loginHome";
     }
 
