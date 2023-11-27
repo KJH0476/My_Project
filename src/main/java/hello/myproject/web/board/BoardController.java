@@ -2,6 +2,8 @@ package hello.myproject.web.board;
 
 import hello.myproject.domain.board.Board;
 import hello.myproject.domain.board.BoardService;
+import hello.myproject.domain.comment.Comment;
+import hello.myproject.domain.comment.CommentService;
 import hello.myproject.domain.user.User;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final CommentService commentService;
 
     //글쓰기 양식
     @GetMapping("/board-form")
@@ -49,14 +52,14 @@ public class BoardController {
 
     //검색
     @GetMapping("/search")
-    public String search(@RequestParam String title, @SessionAttribute(name = "loginUser", required = false) User loginUser, Model model){
+    public String search(@RequestParam String title, Model model){
         List<Board> board = boardService.searchBoard(title);
         model.addAttribute("board", board);
         log.info("title={}", title);
         for (Board board1 : board) {
             log.info("board={}", board1);
         }
-        return "redirect:/";
+        return "page/searchPage";
     }
 
     //메뉴별 검색
@@ -66,14 +69,24 @@ public class BoardController {
         model.addAttribute("board", board);
         log.info("part={}", part);
         log.info("board={}", board);
-        return "redirect:/";
+        return "page/menuPage";
     }
 
     @GetMapping("/board/{id}")
     public String boardView(@PathVariable String id, Model model){
         Board board = boardService.findByBoardId(id);
+        List<Comment> comments = commentService.commentByBoardId(id);
+        board.setCommentCount(comments.size());
         log.info("boardView={}", board);
         model.addAttribute("board", board);
+        if(comments != null) model.addAttribute("comments", comments);
+        else model.addAttribute("comments", null);
         return "board/boardView";
+    }
+
+    @PostMapping("/board/{id}")
+    public String writeComment(@ModelAttribute Comment comment, @PathVariable String id){
+        commentService.saveComment(comment);
+        return "redirect:/board/"+id;
     }
 }

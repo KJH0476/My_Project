@@ -26,7 +26,16 @@ public class LoginService {
         user.setBirth("20000808");
         user.setEmail("lkj0120@naver.com");
 
-        User save = userRepository.save(user);
+        User user2 = new User();
+        user2.setLoginId("kkk1234");
+        user2.setPassword("#kkk1234");
+        user2.setPasswordVerify("#kkk1234");
+        user2.setName("userB");
+        user2.setBirth("20000908");
+        user2.setEmail("lksdfs0@naver.com");
+
+        userRepository.save(user);
+        userRepository.save(user2);
     }
 
     public User login(String loginId, String password){

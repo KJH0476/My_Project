@@ -11,4 +11,5 @@ public class Board {
     private String title;       //제목
     private String content;     //내용
     private String timestamp;   //작성일자
+    private int commentCount;  //댓글 수
 }
