@@ -28,7 +28,7 @@
 </div>
 
 <header>
-    <div>1일 1알고리즘</div>
+    <div><a href="/" th:href="@{/}">1일 1알고리즘</a></div>
 </header>
 
 <nav>
@@ -56,17 +56,22 @@
         <h3>댓글</h3>
         <ul>
             <li th:each="comment : ${comments}">
-                <div><span th:text="${comment.loginId}">사용자 아이디</span> - <span th:text="${comment.timeStamp}">시간</span></div>
-                <p th:text="${comment.content}">댓글 내용</p>
+                <div class="comment-user">
+                    <span th:text="${comment.loginId}">사용자 아이디</span> -
+                    <span th:text="${comment.timeStamp}">시간</span>
+                </div>
+                <p class="comment-content" th:text="${comment.content}">댓글 내용</p>
             </li>
         </ul>
     </div>
-    <form action="/comment" th:action="@{|/board/${board.id}|}" method="post">
-        <textarea name="content" placeholder="댓글을 작성하세요..." required></textarea>
-        <input type="hidden" name="boardId" th:value="${board.id}">
-        <input type="hidden" name="loginId" th:value="${session.loginUser.loginId}">
-        <button type="submit">작성</button>
-    </form>
+    <div class="comment-form">
+        <form action="/comment" th:action="@{|/board/${board.id}|}" method="post">
+            <textarea name="content" placeholder="댓글을 작성하세요..." required></textarea>
+            <input type="hidden" name="boardId" th:value="${board.id}">
+            <input type="hidden" name="loginId" th:value="${session.loginUser.loginId}">
+            <button type="submit">작성</button>
+        </form>
+    </div>
 </main>
 
 <footer>
