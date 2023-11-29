@@ -390,3 +390,39 @@ nav>div {
 .challenge-button:hover {
     background-color: #f0f0f0;
 }
+
+.userInfo-textbox {
+    padding: 10px;
+    margin: 10px auto;
+    font-size: 17px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: f0f0f0;
+}
+
+.id-box table {
+    width: 100%;
+}
+
+.id-box td {
+    padding: 5px;
+    height: 30px;
+}
+
+.id-box tr {
+    padding: 5px;
+    width: auto;
+}
+
+.edit-box {
+    width: 50%;
+    text-align: center;
+    background-color: #999494;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px auto;
+    font-family: 'Jua', sans-serif;
+    text-decoration: none;
+    color: black;
+}
