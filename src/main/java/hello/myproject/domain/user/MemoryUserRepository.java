@@ -36,6 +36,14 @@ public class MemoryUserRepository implements UserRepository{
         return Optional.empty();
     }
 
+    public void update(String loginId, User updatePassword){
+        Optional<User> userOp = findLoginId(loginId);
+        User user = userOp.get();
+
+        user.setPassword(updatePassword.getPassword());
+        user.setPasswordVerify(updatePassword.getPasswordVerify());
+    }
+
     public void clearStore(){
         store.clear();
     }

@@ -9,5 +9,6 @@ public interface UserRepository {
     User findId(Long id);
     List<User> findAll();
     Optional<User> findLoginId(String loginId);
+    void update(String loginId, User updatePassword);
     void clearStore();
 }
