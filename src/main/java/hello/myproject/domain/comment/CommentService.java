@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,11 @@ public class CommentService {
     public Comment saveComment(Comment comment){
         log.info("Save Comment");
         Comment com = assignCommentNumber(comment);
-        com.setTimeStamp(LocalDateTime.now().toString());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd E HH:mm");
+        String formattedDateTime = LocalDateTime.now().format(formatter);
+
+        com.setTimeStamp(formattedDateTime);
         Comment saveComment = commentRepository.save(com);
         return saveComment;
     }
