@@ -10,6 +10,8 @@ public interface BoardRepository {
     List<Board> findByLoginUser(String loginId);
     List<Board> findByPart(String part);
     Board findById(Long id);
+    void updateBoard(Long id, Board board);
+    void deleteBoard(Long id);
     void clearBoardStore();
 
 }

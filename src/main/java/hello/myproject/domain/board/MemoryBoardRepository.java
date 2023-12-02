@@ -88,6 +88,26 @@ public class MemoryBoardRepository implements BoardRepository{
     }
 
     /**
+     * 게시글 업데이트
+     */
+    public void updateBoard(Long id, Board board){
+        Board updateboard = findById(id);
+
+        updateboard.setTitle(board.getTitle());
+        updateboard.setPart(board.getPart());
+        updateboard.setContent(board.getContent());
+        updateboard.setTimestamp(board.getTimestamp());
+    }
+
+    /**
+     * 게시글 삭제
+     */
+    public void deleteBoard(Long id){
+        boardStore.remove(id);
+        log.info("boardStore={}", boardStore);
+    }
+
+    /**
      * 게시글 초기화
      */
     public void clearBoardStore(){

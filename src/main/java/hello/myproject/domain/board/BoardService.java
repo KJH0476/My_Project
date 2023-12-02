@@ -1,5 +1,6 @@
 package hello.myproject.domain.board;
 
+import hello.myproject.domain.comment.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.Map;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final CommentRepository commentRepository;
 
     /**
      * 게시글 저장
@@ -58,5 +60,14 @@ public class BoardService {
             partBoard.add(board);
         }
         return partBoard;
+    }
+
+    public void updateBoardService(String id, Board board){
+        boardRepository.updateBoard(Long.parseLong(id), board);
+    }
+
+    public void deleteBoardService(String id){
+        commentRepository.deleteCommentAllBoardId(Long.parseLong(id));
+        boardRepository.deleteBoard(Long.parseLong(id));
     }
 }
