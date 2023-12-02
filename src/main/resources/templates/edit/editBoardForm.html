@@ -10,20 +10,21 @@
 
   <main>
     <div class="blog-post">
+      <input type="hidden" id="boardId" th:value="${board.id}">
       <input type="hidden" class="user-id" id="userId" th:data-login-id="${session.loginUser.loginId}">
-      <input type="text" id="blogTitle" name="title" placeholder="문제 제목 입력.." class="blog-title-input" />
+      <input type="text" id="blogTitle" name="title" th:value="${board.title}" class="blog-title-input" />
       <hr>
       <select id="blogPart" name="part" class="part-input">
-        <option value="Hash">해시</option>
-        <option value="Stack-Queue">스택 / 큐</option>
-        <option value="Heap">힙</option>
-        <option value="Sort">정렬</option>
-        <option value="Exhaustive">완전탐색</option>
-        <option value="Greedy">그리디</option>
-        <option value="Dynamic-Programming">동적계획법</option>
-        <option value="DFS-BFS">DFS/BFS</option>
-        <option value="Binary-Search">이분탐색</option>
-        <option value="Graph">그래프</option>
+        <option value="Hash" th:selected="${board.part == 'Hash'}">해시</option>
+        <option value="Stack-Queue" th:selected="${board.part == 'Stack-Queue'}">스택 / 큐</option>
+        <option value="Heap" th:selected="${board.part == 'Heap'}">힙</option>
+        <option value="Sort" th:selected="${board.part == 'Sort'}">정렬</option>
+        <option value="Exhaustive" th:selected="${board.part == 'Exhaustive'}">완전탐색</option>
+        <option value="Greedy" th:selected="${board.part == 'Greedy'}">그리디</option>
+        <option value="Dynamic-Programming" th:selected="${board.part == 'Dynamic-Programming'}">동적계획법</option>
+        <option value="DFS-BFS" th:selected="${board.part == 'DFS-BFS'}">DFS/BFS</option>
+        <option value="Binary-Search" th:selected="${board.part == 'Binary-Search'}">이분탐색</option>
+        <option value="Graph" th:selected="${board.part == 'Graph'}">그래프</option>
       </select>
       <hr>
       <div class="editor-menu">
@@ -49,9 +50,8 @@
           IMG
         </button>
       </div>
-      <div id="editable-content" class="editable-content" contenteditable="true">
-      </div>
-      <button id="sendPostButton" name="sendButton" type="submit">저장</button>
+      <div id="editable-content" class="editable-content" th:utext="${board.content}" contenteditable="true">내용</div>
+      <button id="sendPostButton" name="sendButton" type="submit">수정하기</button>
     </div>
   </main>
 
@@ -179,6 +179,7 @@
   </script>
   <script>
       function sendPost() {
+        var id = document.getElementById('boardId').value;
         var title = document.getElementById('blogTitle').value;
         var part = document.getElementById('blogPart').value;
         var loginId = document.getElementById('userId').getAttribute('data-login-id');
@@ -193,7 +194,7 @@
             timestamp: timestamp
         };
 
-        fetch('/board-save', {
+        fetch('/board-edit/' + id, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
@@ -217,7 +218,6 @@
   <script>
       document.getElementById('sendPostButton').addEventListener('click', sendPost);
   </script>
-
 </body>
 
 </html>

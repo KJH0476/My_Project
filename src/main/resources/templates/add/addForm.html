@@ -1,95 +1,62 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1일 1알고리즘</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Jua&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/mainpage.css">
-</head>
+<head th:replace="~{duplication :: common-head}"></head>
 
 <body>
-<div id="menuButton" class="menu-button">☰ 메뉴</div>
-<div id="sidebar" class="sidebar">
-  <a href="/login">로그인</a>
-  <form action="#" th:action="@{/search}" method="get">
-    <input type="text" name="title" placeholder="Search Algorithm.." class="search-box">
-  </form>
-  <a href="#" th:href="@{/board-form}">글쓰기</a>
-  <a href="#" th:href="@{/myPage}">마이페이지</a>
-  <a href="#" th:href="@{/userInfo/0}">회원정보</a>
-  <a href="#">AI에게 질문</a>
-  <a href="#" th:href="@{/logout}">로그아웃</a>
-</div>
+  <div id="menuButton" class="menu-button">☰ 메뉴</div>
+  <div id="sidebar" class="sidebar">
+    <a href="/login">로그인</a>
+    <form action="#" th:action="@{/search}" method="get">
+      <input type="text" name="title" placeholder="Search Algorithm.." class="search-box">
+    </form>
+    <a href="#" th:href="@{/board-form}">글쓰기</a>
+    <a href="#" th:href="@{/myPage}">마이페이지</a>
+    <a href="#" th:href="@{/userInfo/0}">회원정보</a>
+    <a href="#">AI에게 질문</a>
+    <a href="#" th:href="@{/logout}">로그아웃</a>
+  </div>
 
-<header>
-  <div><a href="/" th:href="@{/}">1일 1알고리즘</a></div>
-</header>
+  <header th:replace="~{duplication :: header}"></header>
+  <nav th:replace="~{duplication :: navigation}"></nav>
 
-<nav>
-  <a href="#" th:href="@{|/menu/Hash|}">해시</a>
-  <a href="#" th:href="@{|/menu/Stack-Queue|}">스택 / 큐</a>
-  <a href="#" th:href="@{|/menu/Heap|}">힙</a>
-  <a href="#" th:href="@{|/menu/Sort|}">정렬</a>
-  <a href="#" th:href="@{|/menu/Exhaustive|}">완전탐색</a>
-  <a href="#" th:href="@{|/menu/Greedy|}">그리디</a>
-  <a href="#" th:href="@{|/menu/Dynamic-Programming|}">동적계획법</a>
-  <a href="#" th:href="@{|/menu/DFS-BFS|}">DFS/BFS</a>
-  <a href="#" th:href="@{|/menu/Binary-Search|}">이분탐색</a>
-  <a href="#" th:href="@{|/menu/Graph|}">그래프</a>
-</nav>
+  <main style="text-align: center;">
+    <form method="post" name="addForm" action="index.html" th:action th:object="${user}" class="login-box">
+      <p class="login-text">회원가입</p>
+      <div class="id-box">
+        <div th:if="${#fields.hasGlobalErrors()}" class="global-error">
+          <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+        </div>
 
-<main style="text-align: center;">
-  <form method="post" name="addForm" action="index.html" th:action th:object="${user}" class="login-box">
-    <p class="login-text">회원가입</p>
-    <div class="id-box">
-      <div th:if="${#fields.hasGlobalErrors()}" class="global-error">
-        <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+        <input type="text" name="id" placeholder="아이디 입력.." th:field="*{loginId}" class="id-textbox" />
+        <div class="field-error" th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}">비어있음</div>
+
+        <input type="password" name="password" placeholder="비밀번호 입력.." th:field="*{password}" class="id-textbox" />
+        <div class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">비어있음</div>
+
+        <input type="password" name="passwordVerify" placeholder="비밀번호 확인.." th:field="*{passwordVerify}" class="id-textbox" />
+        <div class="field-error" th:if="${#fields.hasErrors('passwordVerify')}" th:errors="*{passwordVerify}">비어있음</div>
+
+        <input type="text" name="name" placeholder="이름 입력.." th:field="*{name}" class="id-textbox" />
+        <div class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">비어있음</div>
+
+        <input type="text" name="birth" placeholder="생년월일(8자리).." th:field="*{birth}" class="id-textbox" />
+        <div class="field-error" th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}">비어있음</div>
+
+        <input type="text" name="phoneNumber" placeholder="전화번호 입력.." th:field="*{phoneNumber}" class="id-textbox" />
+        <div class="field-error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">비어있음</div>
+
+        <input type="text" name="email" placeholder="이메일 입력.." th:field="*{email}" class="id-textbox" />
+        <div class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">비어있음</div>
+
+        <input type="submit" value="가입하기" class="submit-box">
       </div>
+    </form>
+  </main>
 
-      <input type="text" name="id" placeholder="아이디 입력.." th:field="*{loginId}" class="id-textbox" />
-      <div class="field-error" th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}">비어있음</div>
+  <footer th:replace="~{duplication :: footer}"></footer>
 
-      <input type="password" name="password" placeholder="비밀번호 입력.." th:field="*{password}" class="id-textbox" />
-      <div class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">비어있음</div>
-
-      <input type="password" name="passwordVerify" placeholder="비밀번호 확인.." th:field="*{passwordVerify}" class="id-textbox" />
-      <div class="field-error" th:if="${#fields.hasErrors('passwordVerify')}" th:errors="*{passwordVerify}">비어있음</div>
-
-      <input type="text" name="name" placeholder="이름 입력.." th:field="*{name}" class="id-textbox" />
-      <div class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">비어있음</div>
-
-      <input type="text" name="birth" placeholder="생년월일(8자리).." th:field="*{birth}" class="id-textbox" />
-      <div class="field-error" th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}">비어있음</div>
-
-      <input type="text" name="phoneNumber" placeholder="전화번호 입력.." th:field="*{phoneNumber}" class="id-textbox" />
-      <div class="field-error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">비어있음</div>
-
-      <input type="text" name="email" placeholder="이메일 입력.." th:field="*{email}" class="id-textbox" />
-      <div class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">비어있음</div>
-
-      <input type="submit" value="가입하기" class="submit-box">
-    </div>
-  </form>
-</main>
-
-<footer>
-  <div>footer</div>
-</footer>
-
-<script>
-    document.getElementById('menuButton').onclick = function () {
-        var sidebar = document.getElementById('sidebar');
-        if (sidebar.style.width === '250px') {
-            sidebar.style.width = '0';
-        } else {
-            sidebar.style.width = '250px';
-        }
-    }
-</script>
+  <script src="../javascript/menubar.js"></script>
 
 </body>
 

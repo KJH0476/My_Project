@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common-head">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1일 1알고리즘</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Jua&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/mainpage.css">
+</head>
+<body>
+  <div th:fragment="sidebar">
+    <div id="menuButton" class="menu-button">☰ 메뉴</div>
+    <div id="sidebar" class="sidebar">
+      <div class="user-id">
+        <span th:text="${session.loginUser.loginId}">사용자 아이디</span>
+      </div>
+      <form action="#" th:action="@{/search}" method="get">
+        <input type="text" name="title" placeholder="Search Algorithm.." class="search-box">
+      </form>
+      <a href="#" th:href="@{/board-form}">글쓰기</a>
+      <a href="#" th:href="@{/myPage}">마이페이지</a>
+      <a href="#" th:href="@{|/userInfo/${session.loginUser.loginId}|}">회원정보</a>
+      <a href="#">AI에게 질문</a>
+      <a href="#" th:href="@{/logout}">로그아웃</a>
+    </div>
+  </div>
+
+  <header th:fragment="header">
+    <div><a href="/" th:href="@{/}">1일 1알고리즘</a></div>
+  </header>
+
+  <nav th:fragment="navigation">
+    <a href="#" th:href="@{|/menu/Hash|}">해시</a>
+    <a href="#" th:href="@{|/menu/Stack-Queue|}">스택 / 큐</a>
+    <a href="#" th:href="@{|/menu/Heap|}">힙</a>
+    <a href="#" th:href="@{|/menu/Sort|}">정렬</a>
+    <a href="#" th:href="@{|/menu/Exhaustive|}">완전탐색</a>
+    <a href="#" th:href="@{|/menu/Greedy|}">그리디</a>
+    <a href="#" th:href="@{|/menu/Dynamic-Programming|}">동적계획법</a>
+    <a href="#" th:href="@{|/menu/DFS-BFS|}">DFS/BFS</a>
+    <a href="#" th:href="@{|/menu/Binary-Search|}">이분탐색</a>
+    <a href="#" th:href="@{|/menu/Graph|}">그래프</a>
+  </nav>
+
+  <footer th:fragment="footer">
+    <div>footer</div>
+  </footer>
+
+</body>
+</html>
