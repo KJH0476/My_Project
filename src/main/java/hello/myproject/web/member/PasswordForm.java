@@ -1,4 +1,4 @@
-package hello.myproject.web.user;
+package hello.myproject.web.member;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;

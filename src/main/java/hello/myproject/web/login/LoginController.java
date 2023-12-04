@@ -1,7 +1,7 @@
 package hello.myproject.web.login;
 
 import hello.myproject.domain.login.LoginService;
-import hello.myproject.domain.user.User;
+import hello.myproject.domain.member.Member;
 import hello.myproject.web.session.SessionConst;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -31,16 +31,16 @@ public class LoginController {
                         HttpServletRequest request, @RequestParam(defaultValue = "/") String redirectUrl, Model model){
         if(bindingResult.hasErrors()) return "login/loginForm";
 
-        User loginUser = loginService.login(loginForm.getLoginId(), loginForm.getPassword());
-        log.info("loginUser={}", loginUser);
+        Member loginMember = loginService.login(loginForm.getLoginId(), loginForm.getPassword());
+        log.info("loginMember={}", loginMember);
 
-        if (loginUser == null){
+        if (loginMember == null){
             bindingResult.reject("LoginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
             return "login/loginForm";
         }
 
         HttpSession httpSession = request.getSession(true);
-        httpSession.setAttribute(SessionConst.SESSION_NAME, loginUser);
+        httpSession.setAttribute(SessionConst.SESSION_NAME, loginMember);
 
         return "redirect:" + redirectUrl;
     }

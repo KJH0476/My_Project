@@ -1,7 +1,7 @@
 package hello.myproject.domain.login;
 
-import hello.myproject.domain.user.User;
-import hello.myproject.domain.user.UserRepository;
+import hello.myproject.domain.member.Member;
+import hello.myproject.domain.member.MemberService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,39 +14,40 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class LoginService {
 
-    private final UserRepository userRepository;
+    private final MemberService MemberService;
 
+    /*
     @PostConstruct
     private void init(){
-        User user = new User();
-        user.setLoginId("aaa1234");
-        user.setPassword("#aaa1234");
-        user.setPasswordVerify("#aaa1234");
-        user.setName("userA");
-        user.setBirth("20000808");
-        user.setPhoneNumber("01011111111");
-        user.setEmail("lkj0120@naver.com");
+        Member Member = new Member();
+        Member.setLoginId("aaa1234");
+        Member.setPassword("#aaa1234");
+        Member.setPasswordVerify("#aaa1234");
+        Member.setName("MemberA");
+        Member.setBirth("20000808");
+        Member.setPhoneNumber("01011111111");
+        Member.setEmail("lkj0120@naver.com");
 
-        User user2 = new User();
-        user2.setLoginId("kkk1234");
-        user2.setPassword("#kkk1234");
-        user2.setPasswordVerify("#kkk1234");
-        user2.setName("userB");
-        user2.setBirth("20000908");
-        user2.setPhoneNumber("01022222222");
-        user2.setEmail("lksdfs0@naver.com");
+        Member Member2 = new Member();
+        Member2.setLoginId("kkk1234");
+        Member2.setPassword("#kkk1234");
+        Member2.setPasswordVerify("#kkk1234");
+        Member2.setName("MemberB");
+        Member2.setBirth("20000908");
+        Member2.setPhoneNumber("01022222222");
+        Member2.setEmail("lksdfs0@naver.com");
 
-        userRepository.save(user);
-        userRepository.save(user2);
-    }
+        MemberRepository.save(Member);
+        MemberRepository.save(Member2);
+    }*/
 
-    public User login(String loginId, String password){
+    public Member login(String loginId, String password){
 
-        Optional<User> findUser = userRepository.findLoginId(loginId);
-        if (findUser.isPresent()) {
-            User user = findUser.get();
-            log.info("user={}", user);
-            if(user.getPassword().equals(password)) return user;
+        Optional<Member> findMember = MemberService.findLoginId(loginId);
+        if (findMember.isPresent()) {
+            Member Member = findMember.get();
+            log.info("Member={}", Member);
+            if(Member.getPassword().equals(password)) return Member;
         }
         return null;
     }

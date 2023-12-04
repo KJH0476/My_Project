@@ -7,7 +7,7 @@ public interface BoardRepository {
     void save(Board board);
     List<Board> findAll();
     List<Board> findByTitle(String title);
-    List<Board> findByLoginUser(String loginId);
+    List<Board> findByLoginMember(String loginId);
     List<Board> findByPart(String part);
     Board findById(Long id);
     void updateBoard(Long id, Board board);

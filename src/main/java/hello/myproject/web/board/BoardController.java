@@ -4,7 +4,7 @@ import hello.myproject.domain.board.Board;
 import hello.myproject.domain.board.BoardService;
 import hello.myproject.domain.comment.Comment;
 import hello.myproject.domain.comment.CommentRepository;
-import hello.myproject.domain.user.User;
+import hello.myproject.domain.member.Member;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -67,11 +67,11 @@ public class BoardController {
 
     //마이페이지
     @GetMapping("/myPage")
-    public String goToMyPage(@SessionAttribute(name = "loginUser", required = false) User loginUser, Model model){
-        List<Board> board = boardService.findAllUserBoard(loginUser.getLoginId());
-        model.addAttribute("loginUser", loginUser);
+    public String goToMyPage(@SessionAttribute(name = "loginMember", required = false) Member loginMember, Model model){
+        List<Board> board = boardService.findAllMemberBoard(loginMember.getLoginId());
+        model.addAttribute("loginMember", loginMember);
         model.addAttribute("board", board);
-        log.info("loginUser={}", loginUser);
+        log.info("loginMember={}", loginMember);
         for (Board board1 : board) {
             log.info("board={}", board1);
         }

@@ -35,12 +35,12 @@ public class BoardService {
     }
 
     //로그인 사용자가 게시한 글 찾기
-    public List<Board> findAllUserBoard(String loginId) {
-        List<Board> findUserBoard = new ArrayList<>();
-        for (Board board : boardRepository.findByLoginUser(loginId)) {
-            findUserBoard.add(board);
+    public List<Board> findAllMemberBoard(String loginId) {
+        List<Board> findMemberBoard = new ArrayList<>();
+        for (Board board : boardRepository.findByLoginMember(loginId)) {
+            findMemberBoard.add(board);
         }
-        return findUserBoard;
+        return findMemberBoard;
     }
 
     public Board findByBoardId(String id){

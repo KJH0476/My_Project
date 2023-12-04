@@ -50,7 +50,7 @@ public class MemoryBoardRepository implements BoardRepository{
     /**
      * 로그인 아이디로 게시글 찾기(마이페이지)
      */
-    public List<Board> findByLoginUser(String loginId){
+    public List<Board> findByLoginMember(String loginId){
         List<Board> boards = new ArrayList<>();
         for (Board board : boardStore.values()) {
             if(board.getLoginId().equals(loginId)){
