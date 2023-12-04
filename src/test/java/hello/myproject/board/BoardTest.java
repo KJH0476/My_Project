@@ -36,21 +36,21 @@ public class BoardTest {
 
     @Test
     void 사용자게시글검색(){
-        List<Board> allUserBoard = boardService.findAllUserBoard(board2.getLoginId());
-        assertThat(allUserBoard.get(0).getLoginId()).isSameAs("userB");
+        List<Board> allMemberBoard = boardService.findAllMemberBoard(board2.getLoginId());
+        assertThat(allMemberBoard.get(0).getLoginId()).isSameAs("MemberB");
     }
 
     @PostConstruct
     void init(){
         board1.setId(0L);
-        board1.setLoginId("userA");
+        board1.setLoginId("MemberA");
         board1.setContent("----알고리즘----");
         board1.setPart("완전탐색");
         board1.setTitle("백준 1055번");
         board1.setTimestamp("2023-11-16");
 
         board2.setId(1L);
-        board2.setLoginId("userB");
+        board2.setLoginId("MemberB");
         board2.setContent("----알고리즘----");
         board2.setPart("그리디");
         board2.setTitle("백준 5번");
