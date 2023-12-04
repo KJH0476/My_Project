@@ -12,7 +12,7 @@
     </form>
     <a href="#" th:href="@{/board-form}">글쓰기</a>
     <a href="#" th:href="@{/myPage}">마이페이지</a>
-    <a href="#" th:href="@{/userInfo/0}">회원정보</a>
+    <a href="#" th:href="@{/memberInfo/0}">회원정보</a>
     <a href="#">AI에게 질문</a>
     <a href="#" th:href="@{/logout}">로그아웃</a>
   </div>
@@ -21,7 +21,7 @@
   <nav th:replace="~{duplication :: navigation}"></nav>
 
   <main style="text-align: center;">
-    <form method="post" name="addForm" action="index.html" th:action th:object="${user}" class="login-box">
+    <form method="post" name="addForm" action="index.html" th:action th:object="${member}" class="login-box">
       <p class="login-text">회원가입</p>
       <div class="id-box">
         <div th:if="${#fields.hasGlobalErrors()}" class="global-error">

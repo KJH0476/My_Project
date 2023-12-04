@@ -6,7 +6,7 @@
 <body>
   <div id="menuButton" class="menu-button">☰ 메뉴</div>
   <div id="sidebar" class="sidebar">
-    <div class="user-id">
+    <div class="member-id">
       <a href="/login">로그인</a>
     </div>
     <form action="#" th:action="@{/search}" method="get">
@@ -14,7 +14,7 @@
     </form>
     <a href="#" th:href="@{/board-form}">글쓰기</a>
     <a href="#" th:href="@{/myPage}">마이페이지</a>
-    <a href="#" th:href="@{/userInfo/0}">회원정보</a>
+    <a href="#" th:href="@{/memberInfo/0}">회원정보</a>
     <a href="#">AI에게 질문</a>
     <a href="#" th:href="@{/logout}">로그아웃</a>
   </div>

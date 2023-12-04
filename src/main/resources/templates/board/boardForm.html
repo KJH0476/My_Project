@@ -10,7 +10,7 @@
 
   <main>
     <div class="blog-post">
-      <input type="hidden" class="user-id" id="userId" th:data-login-id="${session.loginUser.loginId}">
+      <input type="hidden" class="member-id" id="memberId" th:data-login-id="${session.loginMember.loginId}">
       <input type="text" id="blogTitle" name="title" placeholder="문제 제목 입력.." class="blog-title-input" />
       <hr>
       <select id="blogPart" name="part" class="part-input">
@@ -181,7 +181,7 @@
       function sendPost() {
         var title = document.getElementById('blogTitle').value;
         var part = document.getElementById('blogPart').value;
-        var loginId = document.getElementById('userId').getAttribute('data-login-id');
+        var loginId = document.getElementById('memberId').getAttribute('data-login-id');
         var content = document.querySelector('.editable-content').innerHTML;
         var timestamp = new Date().toISOString();
 

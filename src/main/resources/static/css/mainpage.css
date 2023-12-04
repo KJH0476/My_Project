@@ -98,7 +98,7 @@ main {
     color: black;
 }
 
-.content-user {
+.content-member {
     font-size: 15px;
     font-style: italic;
     color: rgb(89, 92, 92);
@@ -127,7 +127,7 @@ nav>div {
     cursor: pointer;
 }
 
-.user-id {
+.member-id {
     color: white;
     padding: 10px 15px;
     font-size: 20px;
@@ -206,7 +206,7 @@ nav>div {
     font-family: 'Jua', sans-serif;
 }
 
-.new-user {
+.new-member {
     text-decoration: none;
     color: black;
     text-align: center;
@@ -313,8 +313,8 @@ nav>div {
     padding: 10px 0;
 }
 
-.comment-user {
-    font-size: 14px; /* Smaller font for user and timestamp */
+.comment-member {
+    font-size: 14px; /* Smaller font for Member and timestamp */
     color: #666;
 }
 
@@ -391,7 +391,7 @@ nav>div {
     background-color: #f0f0f0;
 }
 
-.userInfo-textbox {
+.memberInfo-textbox {
     padding: 10px;
     margin: 10px auto;
     font-size: 17px;

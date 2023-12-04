@@ -12,7 +12,7 @@
         </form>
         <a href="#" th:href="@{/board-form}">글쓰기</a>
         <a href="#" th:href="@{/myPage}">마이페이지</a>
-        <a href="#" th:href="@{/userInfo/0}">회원정보</a>
+        <a href="#" th:href="@{/memberInfo/0}">회원정보</a>
         <a href="#">AI에게 질문</a>
         <a href="#" th:href="@{/logout}">로그아웃</a>
     </div>
@@ -37,7 +37,7 @@
                 <input type="submit" value="로그인" class="submit-box">
             </div>
         </form>
-        <a href="/add" th:href="@{/add}" class="new-user">회원가입</a>
+        <a href="/add" th:href="@{/add}" class="new-member">회원가입</a>
     </main>
 
     <footer th:replace="~{duplication :: footer}"></footer>

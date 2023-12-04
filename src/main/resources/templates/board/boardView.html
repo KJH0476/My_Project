@@ -16,7 +16,7 @@
             <hr>
             <div id="editable-content" class="editable-content" th:utext="${board.content}">내용</div>
         </div>
-        <div th:if="${board.loginId == session.loginUser.loginId}">
+        <div th:if="${board.loginId == session.loginMember.loginId}">
             <a href="#" th:href="@{|/board-edit/${board.id}|}" style="color:black">수정</a>
             <a href="#" th:href="@{|/board-delete/${board.id}|}" style="color:black">삭제</a>
         </div>
@@ -24,12 +24,12 @@
             <h3>댓글</h3>
             <ul>
                 <li th:each="comment : ${comments}">
-                    <div class="comment-user">
+                    <div class="comment-member">
                         <span th:text="${comment.loginId}">사용자 아이디</span> -
                         <span th:text="${comment.timeStamp}">시간</span>
                     </div>
                     <p class="comment-content" th:text="${comment.content}">댓글 내용</p>
-                    <div th:if="${comment.loginId == session.loginUser.loginId}">
+                    <div th:if="${comment.loginId == session.loginMember.loginId}">
                         <a href="#" th:href="@{|/comment/delete/${comment.boardId}/${comment.id}|}" style="color:black">삭제</a>
                     </div>
                 </li>
@@ -39,7 +39,7 @@
             <form action="/comment" th:action="@{|/board/${board.id}|}" method="post">
                 <textarea name="content" placeholder="댓글을 작성하세요..." required></textarea>
                 <input type="hidden" name="boardId" th:value="${board.id}">
-                <input type="hidden" name="loginId" th:value="${session.loginUser.loginId}">
+                <input type="hidden" name="loginId" th:value="${session.loginMember.loginId}">
                 <button type="submit">작성</button>
             </form>
         </div>

@@ -13,15 +13,15 @@
   <div th:fragment="sidebar">
     <div id="menuButton" class="menu-button">☰ 메뉴</div>
     <div id="sidebar" class="sidebar">
-      <div class="user-id">
-        <span th:text="${session.loginUser.loginId}">사용자 아이디</span>
+      <div class="member-id">
+        <span th:text="${session.loginMember.loginId}">사용자 아이디</span>
       </div>
       <form action="#" th:action="@{/search}" method="get">
         <input type="text" name="title" placeholder="Search Algorithm.." class="search-box">
       </form>
       <a href="#" th:href="@{/board-form}">글쓰기</a>
       <a href="#" th:href="@{/myPage}">마이페이지</a>
-      <a href="#" th:href="@{|/userInfo/${session.loginUser.loginId}|}">회원정보</a>
+      <a href="#" th:href="@{|/memberInfo/${session.loginMember.loginId}|}">회원정보</a>
       <a href="#">AI에게 질문</a>
       <a href="#" th:href="@{/logout}">로그아웃</a>
     </div>
@@ -47,6 +47,8 @@
   <footer th:fragment="footer">
     <div>footer</div>
   </footer>
+
+  <script src="../javascript/menubar.js"></script>
 
 </body>
 </html>
