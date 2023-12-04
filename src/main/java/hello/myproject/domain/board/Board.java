@@ -1,12 +1,19 @@
 package hello.myproject.domain.board;
 
+import hello.myproject.domain.member.Member;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
+@Entity
+@Table(name = "BOARD")
 public class Board {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String loginId;     //로그인사용자아이디
+
+    private String loginId;
     private String part;        //분야
     private String title;       //제목
     private String content;     //내용

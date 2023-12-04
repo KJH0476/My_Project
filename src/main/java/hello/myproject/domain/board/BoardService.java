@@ -1,6 +1,7 @@
 package hello.myproject.domain.board;
 
 import hello.myproject.domain.comment.CommentRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BoardService {
 
     private final BoardRepository boardRepository;

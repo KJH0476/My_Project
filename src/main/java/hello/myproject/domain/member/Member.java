@@ -15,6 +15,7 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     @NotEmpty(message = "아이디는 필수로 입력하여야 합니다.")
     private String loginId;
 

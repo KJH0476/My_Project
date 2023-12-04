@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
-@Repository
+//@Repository
 public class MemoryBoardRepository implements BoardRepository{
 
     // <사용자아이디, 게시글내용>
