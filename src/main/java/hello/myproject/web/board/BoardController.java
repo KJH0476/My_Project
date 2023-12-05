@@ -3,7 +3,6 @@ package hello.myproject.web.board;
 import hello.myproject.domain.board.Board;
 import hello.myproject.domain.board.BoardService;
 import hello.myproject.domain.comment.Comment;
-import hello.myproject.domain.comment.CommentRepository;
 import hello.myproject.domain.member.Member;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,6 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
-    private final CommentRepository commentRepository;
 
     //글쓰기 폼
     @GetMapping("/board-form")
@@ -101,12 +99,11 @@ public class BoardController {
     }
 
     //게시글, 댓글 보여주기
-    @GetMapping("/board/{id}")
-    public String boardView(@PathVariable String id, Model model){
-        Board board = boardService.findByBoardId(id);
-        List<Comment> comments = commentRepository.findByBoardId(Long.parseLong(id));
+    @GetMapping("/board/{boardId}")
+    public String boardView(@PathVariable String boardId, Model model){
+        Board board = boardService.findByBoardId(boardId);
+        List<Comment> comments = boardService.commentListByBoardId(Long.parseLong(boardId));
 
-        board.setCommentCount(comments.size());
         log.info("boardView={}", board);
         model.addAttribute("board", board);
 
@@ -117,22 +114,27 @@ public class BoardController {
     }
 
     //댓글 작성
-    @PostMapping("/board/{id}")
-    public String saveComment(@ModelAttribute Comment comment, @PathVariable String id){
+    @PostMapping("/board/{boardId}")
+    public String saveComment(@ModelAttribute Comment comment, @PathVariable String boardId){
         log.info("saveComment");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd E HH:mm");
         String formattedDateTime = LocalDateTime.now().format(formatter);
+        log.info("comment={}", comment);
 
         comment.setTimeStamp(formattedDateTime);
 
-        commentRepository.save(comment);
-        return "redirect:/board/"+id;
+        comment.setBoard(boardService.findByBoardId(boardId));
+
+        log.info("comment={}", comment);
+        boardService.saveCommentAndCommentCount(comment);
+
+        return "redirect:/board/"+boardId;
     }
 
     //댓글 삭제
     @GetMapping("/comment/delete/{boardId}/{commentId}")
     public String removeComment(@PathVariable String boardId, @PathVariable("commentId") String id){
-        commentRepository.deleteComment(Long.parseLong(id));
+        boardService.deleteComment(Long.parseLong(id));
 
         return "redirect:/board/"+Long.parseLong(boardId);
     }
