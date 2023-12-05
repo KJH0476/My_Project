@@ -1,5 +1,6 @@
 package hello.myproject.domain.board;
 
+import hello.myproject.domain.comment.Comment;
 import hello.myproject.domain.comment.CommentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +20,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final CommentRepository commentRepository;
 
-    /**
-     * 게시글 저장
-     */
+    //게시글 저장
     public void saveBoard(Board board){
         log.info("run BoardService Save");
         boardRepository.save(board);
@@ -45,6 +44,7 @@ public class BoardService {
         return findMemberBoard;
     }
 
+    //게시글 id로 찾기
     public Board findByBoardId(String id){
         Long Lid = Long.parseLong(id);
 
@@ -64,12 +64,37 @@ public class BoardService {
         return partBoard;
     }
 
+    //게시글 수정
     public void updateBoardService(String id, Board board){
         boardRepository.updateBoard(Long.parseLong(id), board);
     }
 
+    //게시글 삭제
     public void deleteBoardService(String id){
         commentRepository.deleteCommentAllBoardId(Long.parseLong(id));
         boardRepository.deleteBoard(Long.parseLong(id));
+    }
+
+    //게시글에 달린 댓글 반환
+    public List<Comment> commentListByBoardId(Long id){
+        List<Comment> comments = commentRepository.findByBoardId(id);
+        return comments;
+    }
+
+    //댓글 저장 및 게시글 댓글 수 증가
+    public void saveCommentAndCommentCount(Comment comment){
+        commentRepository.save(comment);
+        log.info("service comment save={}", comment);
+
+        Long boardId = comment.getBoard().getId();
+
+        int cnt = commentRepository.findByBoardId(boardId).size();
+
+        boardRepository.updateBoardCommentCount(cnt, boardId);
+    }
+
+    //댓글 삭제
+    public void deleteComment(Long commentId){
+        commentRepository.deleteComment(commentId);
     }
 }

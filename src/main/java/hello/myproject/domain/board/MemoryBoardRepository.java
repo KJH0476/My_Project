@@ -99,6 +99,10 @@ public class MemoryBoardRepository implements BoardRepository{
         updateboard.setTimestamp(board.getTimestamp());
     }
 
+    public void updateBoardCommentCount(int cnt, Long id) {
+
+    }
+
     /**
      * 게시글 삭제
      */

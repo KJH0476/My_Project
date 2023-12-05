@@ -11,6 +11,7 @@ public interface BoardRepository {
     List<Board> findByPart(String part);
     Board findById(Long id);
     void updateBoard(Long id, Board board);
+    void updateBoardCommentCount(int cnt, Long id);
     void deleteBoard(Long id);
     void clearBoardStore();
 
