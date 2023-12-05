@@ -30,7 +30,7 @@
                     </div>
                     <p class="comment-content" th:text="${comment.content}">댓글 내용</p>
                     <div th:if="${comment.loginId == session.loginMember.loginId}">
-                        <a href="#" th:href="@{|/comment/delete/${comment.boardId}/${comment.id}|}" style="color:black">삭제</a>
+                        <a href="#" th:href="@{|/comment/delete/${board.id}/${comment.id}|}" style="color:black">삭제</a>
                     </div>
                 </li>
             </ul>
@@ -38,7 +38,6 @@
         <div class="comment-form">
             <form action="/comment" th:action="@{|/board/${board.id}|}" method="post">
                 <textarea name="content" placeholder="댓글을 작성하세요..." required></textarea>
-                <input type="hidden" name="boardId" th:value="${board.id}">
                 <input type="hidden" name="loginId" th:value="${session.loginMember.loginId}">
                 <button type="submit">작성</button>
             </form>
