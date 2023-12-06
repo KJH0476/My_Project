@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{duplication :: common-head}"></head>
+
+<body>
+<div th:insert="~{duplication :: sidebar}"></div>
+<header th:replace="~{duplication :: header}"></header>
+<nav th:replace="~{duplication :: navigation}"></nav>
+
+<main>
+    <div class="chat-container">
+        <h2 class="chat-title">AI에게 질문</h2>
+        <form id="chat-form" th:action method="post">
+            <input class="question-textbox" type="text" name="question" placeholder="질문을 입력하세요..">
+            <button type="submit">전송</button>
+        </form>
+        <div id="response-container">
+            <p id="response" th:text="${answer}"></p>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{duplication :: footer}"></footer>
+
+<script src="../javascript/menubar.js"></script>
+
+</body>
+
+</html>
