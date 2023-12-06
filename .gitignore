@@ -37,4 +37,5 @@ out/
 .vscode/
 
 ### DB INFO ###
-application-DB.properties
+### SECRET KEY ###
+application-SECRET.properties
