@@ -86,15 +86,19 @@ public class BoardService {
         commentRepository.save(comment);
         log.info("service comment save={}", comment);
 
-        Long boardId = comment.getBoard().getId();
-
-        int cnt = commentRepository.findByBoardId(boardId).size();
-
-        boardRepository.updateBoardCommentCount(cnt, boardId);
+        updateCommentCount(comment.getBoard().getId());
     }
 
     //댓글 삭제
-    public void deleteComment(Long commentId){
+    public void deleteComment(Long commentId, Long boardId){
         commentRepository.deleteComment(commentId);
+
+        updateCommentCount(boardId);
+    }
+
+    //게시물 댓글 수 업데이트
+    public void updateCommentCount(Long boardId){
+        int cnt = commentRepository.findByBoardId(boardId).size();
+        boardRepository.updateBoardCommentCount(cnt, boardId);
     }
 }
