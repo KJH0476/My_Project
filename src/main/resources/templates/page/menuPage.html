@@ -11,8 +11,8 @@
   <main>
     <div class="content" th:each="board : ${board}">
       <a href="#" th:href="@{|/board/${board.id}|}" class="content-title" th:text="${board.title}">백준 105번</a>
-      <span class="content-member" th:text="${board.loginId}">kjh1234</span>
-      <div th:text="${board.commentCount}">댓글 수</div>
+      <span class="content-member" th:text="${board.loginId}">로그인 아이디</span>
+      <div th:text="'댓글 ' + ${board.commentCount}">댓글 수</div>
       <p class="content-part" th:text="${board.part}">DFS / BFS</p>
     </div>
   </main>
