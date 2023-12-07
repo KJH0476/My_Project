@@ -134,7 +134,7 @@ public class BoardController {
     //댓글 삭제
     @GetMapping("/comment/delete/{boardId}/{commentId}")
     public String removeComment(@PathVariable String boardId, @PathVariable("commentId") String id){
-        boardService.deleteComment(Long.parseLong(id));
+        boardService.deleteComment(Long.parseLong(id), Long.parseLong(boardId));
 
         return "redirect:/board/"+Long.parseLong(boardId);
     }
