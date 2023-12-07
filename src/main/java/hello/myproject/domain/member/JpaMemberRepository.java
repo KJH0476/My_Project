@@ -54,6 +54,6 @@ public class JpaMemberRepository implements MemberRepository{
 
     @Override
     public void clearStore() {
-        em.createQuery("DELETE FROM Member").executeUpdate();
+        em.createQuery("delete from Member").executeUpdate();
     }
 }
