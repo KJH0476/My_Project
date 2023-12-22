@@ -31,7 +31,6 @@
 <img width="196" alt="스크린샷 2023-12-22 오후 3 44 43" src="https://github.com/KJH0476/My_Project/assets/148829100/c9df8f4c-0786-4ab8-8f25-70c8ec25a3e2">
 <img width="197" alt="스크린샷 2023-12-22 오후 3 53 03" src="https://github.com/KJH0476/My_Project/assets/148829100/5f6c37a6-6260-481b-b51c-bb395380cd61">
 <img width="196" alt="스크린샷 2023-12-22 오후 3 54 57" src="https://github.com/KJH0476/My_Project/assets/148829100/8d0a6f7d-d158-41ae-ad86-e2da24090ada">
-<img width="197" alt="스크린샷 2023-12-22 오후 3 58 08" src="https://github.com/KJH0476/My_Project/assets/148829100/dd2ce147-d1c0-4adf-90de-abc06c2c662b">
 <br/>
 <br/>
 
