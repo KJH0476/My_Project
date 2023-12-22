@@ -60,7 +60,7 @@ public class BoardController {
         log.info("deleteBoard");
         boardService.deleteBoardService(id);
 
-        return "page/myPage";
+        return "redirect:/myPage";
     }
 
     //마이페이지
