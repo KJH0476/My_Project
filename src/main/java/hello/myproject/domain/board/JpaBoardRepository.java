@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Slf4j
-@Repository
+//@Repository
 @RequiredArgsConstructor
 public class JpaBoardRepository implements BoardRepository{
 
