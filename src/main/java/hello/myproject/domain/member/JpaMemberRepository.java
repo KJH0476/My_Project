@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-@Repository
+//@Repository
 @RequiredArgsConstructor
 public class JpaMemberRepository implements MemberRepository{
 
@@ -32,7 +32,7 @@ public class JpaMemberRepository implements MemberRepository{
 
     @Override
     public List<Member> findAll() {
-        return em.createQuery("select m form Member m", Member.class).getResultList();
+        return em.createQuery("select m from Member m", Member.class).getResultList();
     }
 
     @Override

@@ -29,9 +29,7 @@ public class BoardService {
     //검색창에서 전체 알고리즘 검색
     public List<Board> searchBoard(String title){
         List<Board> searchBoard = new ArrayList<>();
-        for (Board board : boardRepository.findByTitle(title)) {
-            searchBoard.add(board);
-        }
+        searchBoard.addAll(boardRepository.findByTitle(title));
         return searchBoard;
     }
 

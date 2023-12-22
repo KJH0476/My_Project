@@ -23,7 +23,7 @@ public class JpaBoardRepository implements BoardRepository{
     //게시글 전체 조회
     @Override
     public List<Board> findAll() {
-        return em.createQuery("select b form Board b", Board.class).getResultList();
+        return em.createQuery("select b from Board b", Board.class).getResultList();
     }
 
     //게시글 제목으로 조회
