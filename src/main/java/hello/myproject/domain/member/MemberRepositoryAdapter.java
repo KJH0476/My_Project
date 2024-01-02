@@ -1,5 +1,7 @@
 package hello.myproject.domain.member;
 
+import hello.myproject.domain.trace.callback.TraceTemplate;
+import hello.myproject.domain.trace.logtrace.LogTrace;
 import hello.myproject.web.member.PasswordForm;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +20,11 @@ public class MemberRepositoryAdapter implements MemberRepository{
      * 즉, 기존 코드를 클라이언트가 사용하는 인터페이스의 구현체로 바꿔주는 패턴이다.
      */
     private final SpringDataJpaMemberRepository springDataJpaMemberRepository;
+    private final TraceTemplate template;
 
-    public MemberRepositoryAdapter(SpringDataJpaMemberRepository springDataJpaMemberRepository) {
+    public MemberRepositoryAdapter(SpringDataJpaMemberRepository springDataJpaMemberRepository, LogTrace trace) {
         this.springDataJpaMemberRepository = springDataJpaMemberRepository;
+        this.template = new TraceTemplate(trace);
     }
 
     @Override
@@ -40,7 +44,9 @@ public class MemberRepositoryAdapter implements MemberRepository{
 
     @Override
     public Optional<Member> findLoginId(String loginId) {
-        return springDataJpaMemberRepository.findByLoginId(loginId);
+        return template.execute("MemberRepository.findLoginId()", () -> {
+            return springDataJpaMemberRepository.findByLoginId(loginId);
+        });
     }
 
     @Override

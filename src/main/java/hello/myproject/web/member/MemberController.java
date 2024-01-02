@@ -3,6 +3,8 @@ package hello.myproject.web.member;
 import hello.myproject.domain.member.Member;
 import hello.myproject.domain.member.MemberRepository;
 import hello.myproject.domain.member.MemberService;
+import hello.myproject.domain.trace.callback.TraceTemplate;
+import hello.myproject.domain.trace.logtrace.LogTrace;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,46 +20,58 @@ import java.util.Optional;
 
 @Slf4j
 @Controller
-@RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
+    private final TraceTemplate template;
+
+    public MemberController(MemberService memberService, LogTrace trace) {
+        this.memberService = memberService;
+        this.template = new TraceTemplate(trace);
+    }
 
     @GetMapping("/add")
     public String addForm(@ModelAttribute Member member){
-        return "add/addForm";
+        return template.execute("MemberController.addForm()", () -> {
+            return "add/addForm";
+        });
     }
 
     @PostMapping("/add")
     public String add(@Validated @ModelAttribute Member member, BindingResult bindingResult){
 
-        //아이디 중복 로직
-        Optional<Member> loginId = memberService.findLoginId(member.getLoginId());
-        if(loginId.isPresent()){
-            log.info("아이디 중복");
-            bindingResult.reject("AddFail", "사용하실 수 없는 아이디입니다.");
-        }
-        //비밀번호 검증 로직
-        if(!(member.getPassword().equals(member.getPasswordVerify()))){
-            log.info("비밀번호 검증 실패");
-            bindingResult.reject("VerifyFail", "비밀번호가 일치하지 않습니다.");
-        }
-        if(bindingResult.hasErrors()) return "add/addForm";
+        return template.execute("MemberController.add()", () -> {
+            //아이디 중복 로직
+            Optional<Member> loginId = memberService.findLoginId(member.getLoginId());
+            if(loginId.isPresent()){
+                log.info("아이디 중복");
+                bindingResult.reject("AddFail", "사용하실 수 없는 아이디입니다.");
+            }
+            //비밀번호 검증 로직
+            if(!(member.getPassword().equals(member.getPasswordVerify()))){
+                log.info("비밀번호 검증 실패");
+                bindingResult.reject("VerifyFail", "비밀번호가 일치하지 않습니다.");
+            }
+            if(bindingResult.hasErrors()) return "add/addForm";
 
-        //성공 로직
-        Member saveMember = memberService.save(member);
-        log.info("Add Ok!! saveMember={}", saveMember);
+            //성공 로직
+            Member saveMember = memberService.save(member);
+            log.info("Add Ok!! saveMember={}", saveMember);
 
-        return "redirect:/";
+            return "redirect:/";
+        });
     }
 
     @GetMapping("/memberInfo/{loginId}")
     public String memberInfoPage(@PathVariable String loginId, Model model){
-        Optional<Member> member = memberService.findLoginId(loginId);
-        model.addAttribute("member", member.get());
-        log.info("memberInfo={}", member.get());
 
-        return "page/memberInfoPage";
+        return template.execute("MemberController.memberInfoPage()", () -> {
+            Optional<Member> member = memberService.findLoginId(loginId);
+            model.addAttribute("member", member.get());
+            log.info("memberInfo={}", member.get());
+
+            return "page/memberInfoPage";
+        });
     }
 
     @GetMapping("/edit")
