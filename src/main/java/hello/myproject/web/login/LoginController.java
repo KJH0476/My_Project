@@ -6,9 +6,7 @@ import hello.myproject.domain.trace.callback.TraceTemplate;
 import hello.myproject.domain.trace.logtrace.LogTrace;
 import hello.myproject.web.session.SessionConst;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +36,7 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@Validated @ModelAttribute LoginForm loginForm, BindingResult bindingResult,
                         HttpServletRequest request, @RequestParam(defaultValue = "/") String redirectUrl, Model model){
-        //
+
         return template.execute("LoginController.login()", () -> {
             if(bindingResult.hasErrors()) return "login/loginForm";
 

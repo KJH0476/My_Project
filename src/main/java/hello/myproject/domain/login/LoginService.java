@@ -17,7 +17,7 @@ public class LoginService {
     private final TraceTemplate template;
 
     //생성자를 통한 의존성 주입
-    public LoginService(hello.myproject.domain.member.MemberService memberService, LogTrace trace) {
+    public LoginService(MemberService memberService, LogTrace trace) {
         MemberService = memberService;
         this.template = new TraceTemplate(trace);
     }

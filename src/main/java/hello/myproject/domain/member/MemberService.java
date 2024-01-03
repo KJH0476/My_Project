@@ -1,12 +1,9 @@
 package hello.myproject.domain.member;
 
-import hello.myproject.domain.member.Member;
-import hello.myproject.domain.member.MemberRepository;
 import hello.myproject.domain.trace.callback.TraceTemplate;
 import hello.myproject.domain.trace.logtrace.LogTrace;
 import hello.myproject.web.member.PasswordForm;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
