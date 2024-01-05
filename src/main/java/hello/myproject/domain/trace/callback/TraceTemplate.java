@@ -15,7 +15,7 @@ public class TraceTemplate {
         this.trace = trace;
     }
 
-    public <T> T execute(String message, Callback<T> callback){
+    public <T> T execute(String message, TraceCallback<T> callback){
         TraceStatus status = null;
         try {
             status = trace.begin(message);
