@@ -4,6 +4,7 @@ import hello.myproject.domain.board.Board;
 import hello.myproject.domain.board.BoardService;
 import hello.myproject.domain.comment.Comment;
 import hello.myproject.domain.member.Member;
+import hello.myproject.domain.member.google.GoogleMember;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -63,11 +64,20 @@ public class BoardController {
         return "redirect:/myPage";
     }
 
-    //마이페이지
+    //마이페이지 -> 일반 로그인 사용자와 구글 로그인 사용자 구분
     @GetMapping("/myPage")
-    public String goToMyPage(@SessionAttribute(name = "loginMember", required = false) Member loginMember, Model model){
-        List<Board> board = boardService.findAllMemberBoard(loginMember.getLoginId());
-        model.addAttribute("loginMember", loginMember);
+    public String goToMyPage(@SessionAttribute(name = "loginMember", required = false) Member loginMember,
+                             @SessionAttribute(name = "loginMember", required = false) GoogleMember googleMember,
+                             Model model){
+        List<Board> board = null;
+        if(loginMember==null){
+            board = boardService.findAllMemberBoard(googleMember.getLoginId());
+            model.addAttribute("loginMember", googleMember);
+        }
+        else if(googleMember==null){
+            board = boardService.findAllMemberBoard(loginMember.getLoginId());
+            model.addAttribute("loginMember", loginMember);
+        }
         model.addAttribute("board", board);
         log.info("loginMember={}", loginMember);
         for (Board board1 : board) {
