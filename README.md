@@ -24,6 +24,8 @@
 <img width="753" alt="myproject_db구성" src="https://github.com/KJH0476/My_Project/assets/148829100/cccc53ec-2946-44f2-8c15-a62509fbfc71">
  
 - 회원(Member), 게시글(Board), 댓글(Comment) 총 3개의 테이블로 구성
+- 2024.01.13 구글 로그인 구현을 GoogleMember 테이블 추가
+  (Member 테이블에 저장해주어도 되지만 원활한 학습진행을 위해 따로 생성하였다.)
 <br/>
 
 ### 👀 화면 & 기능
@@ -61,3 +63,4 @@
 - 2023.12.22 - SpringData Jpa 사용한 Repository 추가, 어댑터 패턴을 이용해 기존 인터페이스에 주입
 - 2024.01.02 - 템플릿 콜백 패턴을 이용한 로그 추적기 적용
 - 2024.01.11 - 로그 추적기 어드바이스 & 포인트컷, 빈후처리기 적용(강의에서 배운 내용 그대로 적용)
+- 2024.01.13 - oauth2.0과 spring security 사용해 구글 인증 로그인 구현
