@@ -61,6 +61,6 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
         //특정 url 패턴에 대해 시큐리티 필터 적용을 제외
         return (web) -> web.ignoring()
-                .requestMatchers("/", "/add", "/login", "/logout", "/css/**", "/*.ico", "/error", "/javascript/**");
+                .requestMatchers("/", "/add", "/login", "/logout", "/css/**", "/*.ico", "/error", "/image/**", "/javascript/**");
     }
 }
