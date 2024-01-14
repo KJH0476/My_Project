@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -69,7 +70,7 @@ public class BoardController {
     public String goToMyPage(@SessionAttribute(name = "loginMember", required = false) Member loginMember,
                              @SessionAttribute(name = "loginMember", required = false) GoogleMember googleMember,
                              Model model){
-        List<Board> board = null;
+        List<Board> board = new ArrayList<>();
         if(loginMember==null){
             board = boardService.findAllMemberBoard(googleMember.getLoginId());
             model.addAttribute("loginMember", googleMember);
