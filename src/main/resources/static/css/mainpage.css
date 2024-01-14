@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: 'Jua', sans-serif;
+    font-family: 'Roboto', sans-serif;
     padding-top: 200px;
     padding-bottom: 50px;
 }
@@ -121,7 +121,6 @@ nav>div {
     top: 0;
     left: 0;
     z-index: 102;
-    background-color: black;
     color: white;
     padding: 15px;
     cursor: pointer;
@@ -397,7 +396,7 @@ nav>div {
     font-size: 17px;
     border: 1px solid black;
     border-radius: 5px;
-    background-color: f0f0f0;
+    background-color: #f0f0f0;
 }
 
 .id-box table {
