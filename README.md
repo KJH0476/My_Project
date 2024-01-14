@@ -35,10 +35,11 @@
 - 게시글에 댓글 작성 및 삭제, 게시글별 댓글 수 확인
 - 검색창을 통한 게시글 검색, 파트별 검색, 마이페이지로 나의 게시글 검색
 - AI에게 질문 페이지를 통해 ChatGpt에게 궁금한 점 질문
-<img width="196" alt="스크린샷 2023-12-22 오후 3 41 07" src="https://github.com/KJH0476/My_Project/assets/148829100/de1bedcb-06dd-4ec1-b783-7821451501ad">
-<img width="196" alt="스크린샷 2023-12-22 오후 3 44 43" src="https://github.com/KJH0476/My_Project/assets/148829100/c9df8f4c-0786-4ab8-8f25-70c8ec25a3e2">
-<img width="197" alt="스크린샷 2023-12-22 오후 3 53 03" src="https://github.com/KJH0476/My_Project/assets/148829100/5f6c37a6-6260-481b-b51c-bb395380cd61">
-<img width="196" alt="스크린샷 2023-12-22 오후 3 54 57" src="https://github.com/KJH0476/My_Project/assets/148829100/8d0a6f7d-d158-41ae-ad86-e2da24090ada">
+<img width="281" alt="스크린샷 2024-01-14 오후 10 56 04" src="https://github.com/KJH0476/My_Project/assets/148829100/cd421384-2d91-4816-831f-58f7c46957e7">
+<img width="282" alt="스크린샷 2024-01-14 오후 11 12 57" src="https://github.com/KJH0476/My_Project/assets/148829100/0087cec8-156e-4a4c-a8a1-2347c9e3fab1">
+<img width="280" alt="스크린샷 2024-01-14 오후 10 56 40" src="https://github.com/KJH0476/My_Project/assets/148829100/73d5f9d1-29d0-4d3c-91b4-4de9be00a950">
+<img width="281" alt="스크린샷 2024-01-14 오후 11 08 40" src="https://github.com/KJH0476/My_Project/assets/148829100/ae1b5a83-71ce-4c53-a407-7437e76558ca">
+<img width="281" alt="스크린샷 2024-01-14 오후 11 20 05" src="https://github.com/KJH0476/My_Project/assets/148829100/4dea8d54-e6db-4ac7-ae1b-2a542e3587e4">
 <br/>
 <br/>
 
