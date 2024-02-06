@@ -39,3 +39,5 @@ out/
 ### DB INFO ###
 ### SECRET KEY ###
 application-SECRET.properties
+
+.DS_Store
