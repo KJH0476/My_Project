@@ -4,6 +4,7 @@ import hello.myproject.domain.board.Board;
 import hello.myproject.domain.board.BoardRepository;
 import hello.myproject.domain.board.BoardService;
 import jakarta.annotation.PostConstruct;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,19 +26,19 @@ public class BoardTest {
     @Test
     void 전체검색(){
         List<Board> boards = boardService.searchBoard(board2.getTitle());
-        assertThat(boards.get(0).getTitle()).isSameAs("백준 5번");
+        assertThat(boards.get(0).getTitle()).isEqualTo("백준 5번");
     }
 
     @Test
     void 메뉴검색(){
         List<Board> partBoard = boardService.findPartBoard(board1.getPart());
-        assertThat(partBoard.get(0).getPart()).isSameAs("완전탐색");
+        assertThat(partBoard.get(0).getPart()).isEqualTo("완전탐색");
     }
 
     @Test
     void 사용자게시글검색(){
         List<Board> allMemberBoard = boardService.findAllMemberBoard(board2.getLoginId());
-        assertThat(allMemberBoard.get(0).getLoginId()).isSameAs("MemberB");
+        assertThat(allMemberBoard.get(0).getLoginId()).isEqualTo("MemberB");
     }
 
     @PostConstruct
@@ -58,5 +59,11 @@ public class BoardTest {
 
         boardRepository.save(board1);
         boardRepository.save(board2);
+    }
+
+    @AfterEach
+    void after(){
+        boardRepository.deleteBoard(board1.getId());
+        boardRepository.deleteBoard(board2.getId());
     }
 }
